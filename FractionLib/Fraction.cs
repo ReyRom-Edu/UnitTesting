@@ -1,4 +1,6 @@
-﻿namespace FractionLib
+﻿using System.Numerics;
+
+namespace FractionLib
 {
     public readonly struct Fraction : IEquatable<Fraction>
     {
@@ -43,6 +45,8 @@
             return new(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
         }
 
+        public double ToDouble() => (double)Numerator / Denominator;
+
         public override string ToString() => $"{Numerator}/{Denominator}";
 
         public bool Equals(Fraction other) =>
@@ -50,6 +54,7 @@
 
         public override bool Equals(object? obj) =>
             obj is Fraction other && Equals(other);
+
 
         public override int GetHashCode() => HashCode.Combine(Numerator, Denominator);
 
